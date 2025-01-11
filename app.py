@@ -30,7 +30,7 @@ st.markdown(f"""
 PAGES = {
     "Home": {
         "icon": "house-door",
-        "func": home,
+        "func": st_pages.home,
         "description": "Guidelines & Overview",
         "badge": "Informative",
         "color": "var(--primary-color)"
