@@ -7,6 +7,10 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import MinMaxScaler
 
+# Import st_pages for page routing (Ensure st_pages is installed and set up correctly)
+import st_pages  # Required module for page routing
+from st_pages.dashboard import run as dashboard
+
 #######################
 # Page Configuration
 st.set_page_config(
@@ -206,3 +210,6 @@ st.dataframe(
         "Show": "Show",
     },
 )
+
+# Optional: Call the dashboard to display another page
+dashboard()
