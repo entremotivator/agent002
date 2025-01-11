@@ -1,22 +1,26 @@
 import streamlit as st
-import st_pages # required modules
+import st_pages  # Required module for page routing
 
-# Set page config
+# Set page configuration
 st.set_page_config(page_title="TalkNexus - Ollama Chatbot Multi-Model Interface", layout="wide", page_icon="🤖")
 
-# Load custom CSS from file
+# Function to load custom CSS from file
 def load_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    try:
+        with open(file_name) as f:
+            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    except Exception as e:
+        st.warning(f"Error loading CSS file: {e}")
 
+# Load custom CSS
 load_css('styles.css')
 
-# Initialize session state
+# Initialize session state for tracking the current page
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "Home"
 
-# Header
-st.markdown(f"""
+# Header Section with styling
+st.markdown("""
 <div class="header">
     <div class="animated-bg"></div>
     <div class="header-content">
@@ -26,7 +30,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# Enhanced pages definition
+# Define pages with relevant icons, functions, descriptions, and other info
 PAGES = {
     "Home": {
         "icon": "house-door",
@@ -163,10 +167,12 @@ PAGES = {
     }
 }
 
+# Add Bootstrap icons CDN
 st.markdown("""
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 """, unsafe_allow_html=True)
 
+# Function to handle page navigation
 def navigate():
     with st.sidebar:
         st.markdown('''
@@ -184,21 +190,16 @@ def navigate():
 
         st.markdown('---')
 
-        # Create menu items
+        # Generate menu items
         for page, info in PAGES.items():
             selected = st.session_state.current_page == page
             
-            # Create the button (invisible but clickable)
-            if st.button(
-                f"{page}",
-                key=f"nav_{page}",
-                use_container_width=True,
-                type="secondary" if selected else "primary"
-            ):
+            # Invisible button to select page
+            if st.button(f"{page}", key=f"nav_{page}", use_container_width=True, type="secondary" if selected else "primary"):
                 st.session_state.current_page = page
-                st.rerun()
+                st.experimental_rerun()
 
-            # Visual menu item
+            # Visual representation of the menu item
             st.markdown(f"""
                 <div class="menu-item {'selected' if selected else ''}">
                     <div class="menu-icon">
@@ -212,33 +213,30 @@ def navigate():
                 </div>
             """, unsafe_allow_html=True)
 
-        # Close navigation container
+        # End of the sidebar
         st.markdown('</div>', unsafe_allow_html=True)
         
         return st.session_state.current_page
 
-# Get selected page and run its function
+# Execute the selected page
 try:
     selected_page = navigate()
-    # Update session state
-    if selected_page != st.session_state.current_page:
-        st.session_state.current_page = selected_page
-        st.rerun()
     
-    # Run the selected function
+    # Run the page's corresponding function
     page_function = PAGES[selected_page]["func"]
     page_function()
+
 except Exception as e:
-    st.error(f"Error loading page: {str(e)}")
+    st.error(f"Error loading page: {e}")
     st_pages.home.run()
 
-# Display the footer
+# Footer section
 st.markdown("""
 <div class="footer">
     <div class="footer-content">
         <p>© 2024 Powered by <a href="https://github.com/TsLu1s" target="_blank">TsLu1s </a>. 
-        Advanced Language Models & Intelligent Conversations
-        | Project Source: <a href="https://github.com/TsLu1s/talknexus" target="_blank"> TalkNexus</p>
+        Advanced Language Models & Intelligent Conversations | Project Source: 
+        <a href="https://github.com/TsLu1s/talknexus" target="_blank"> TalkNexus</p>
     </div>
 </div>
 """, unsafe_allow_html=True)
