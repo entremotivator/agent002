@@ -87,6 +87,7 @@ def generate_google_listing(name, address, phone, website, categories):
     content = f"Name: {name}\nAddress: {address}\nPhone: {phone}\nWebsite: {website}\nCategories: {', '.join(categories)}"
     return generate_content("Google Listing", content, options)
 
+def run():
 # Define the Streamlit app title and navigation
 st.set_page_config(page_title="Content Generator", page_icon="✨", layout="wide", initial_sidebar_state="expanded")
 
