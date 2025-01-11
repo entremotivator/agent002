@@ -30,34 +30,138 @@ st.markdown(f"""
 PAGES = {
     "Home": {
         "icon": "house-door",
-        "func": st_pages.home,
+        "func": home,
         "description": "Guidelines & Overview",
         "badge": "Informative",
         "color": "var(--primary-color)"
     },
     "Language Models Management": {
         "icon": "gear",
-        "func": st_pages.model_management,
+        "func": model_management,
         "description": "Download Models",
         "badge": "Configurations",
         "color": "var(--secondary-color)"
     },
     "AI Conversation": {
         "icon": "chat-dots",
-        "func": st_pages.ai_chatbot,
+        "func": ai_chatbot,
         "description": "Interactive AI Chat",
         "badge": "Application",
         "color": "var(--highlight-color)"
     },
     "RAG Conversation": {
         "icon": "chat-dots",
-        "func": st_pages.rag_chat,
+        "func": rag_chat,
         "description": "PDF AI Chat Assistant",
         "badge": "Application",
         "color": "var(--highlight-color)"
+    },
+    "Dashboard": {
+        "icon": "bar-chart",
+        "func": dashboard,
+        "description": "Overview of all systems",
+        "badge": "Analytics",
+        "color": "var(--primary-color)"
+    },
+    "Content Agents": {
+        "icon": "file-earmark-text",
+        "func": content_agents,
+        "description": "Manage Content Agents",
+        "badge": "Management",
+        "color": "var(--secondary-color)"
+    },
+    "Agent Headquarters": {
+        "icon": "building",
+        "func": agent_headquarters,
+        "description": "Centralized Agent Management",
+        "badge": "Operations",
+        "color": "var(--primary-color)"
+    },
+    "LLM Agents": {
+        "icon": "robot",
+        "func": llm_agents,
+        "description": "Language Model Agents",
+        "badge": "Agents",
+        "color": "var(--highlight-color)"
+    },
+    "Voice Agent": {
+        "icon": "mic",
+        "func": voice_agent,
+        "description": "Voice-Activated Agents",
+        "badge": "AI",
+        "color": "var(--secondary-color)"
+    },
+    "Agent Command": {
+        "icon": "command",
+        "func": agent_command,
+        "description": "Command & Control Interface",
+        "badge": "Control",
+        "color": "var(--primary-color)"
+    },
+    "Format Agents": {
+        "icon": "pencil",
+        "func": format_agents,
+        "description": "Text Formatting Agents",
+        "badge": "Text",
+        "color": "var(--secondary-color)"
+    },
+    "Visual Agent Flow": {
+        "icon": "flow-chart",
+        "func": visual_agent_flow,
+        "description": "Visualize Agent Flows",
+        "badge": "Visualization",
+        "color": "var(--highlight-color)"
+    },
+    "Agent Projects": {
+        "icon": "folder",
+        "func": agent_projects,
+        "description": "Manage Agent Projects",
+        "badge": "Projects",
+        "color": "var(--primary-color)"
+    },
+    "AI Agent Roster": {
+        "icon": "list-ul",
+        "func": ai_agent_roster,
+        "description": "Roster of Active Agents",
+        "badge": "Roster",
+        "color": "var(--secondary-color)"
+    },
+    "Agent Generator": {
+        "icon": "plus-circle",
+        "func": agent_generator,
+        "description": "Generate New Agents",
+        "badge": "Creation",
+        "color": "var(--highlight-color)"
+    },
+    "Active Agents": {
+        "icon": "users",
+        "func": active_agents,
+        "description": "Monitor Active Agents",
+        "badge": "Status",
+        "color": "var(--primary-color)"
+    },
+    "LLM Library": {
+        "icon": "book",
+        "func": llm_library,
+        "description": "Access Language Models",
+        "badge": "Library",
+        "color": "var(--secondary-color)"
+    },
+    "Agent Tool Library": {
+        "icon": "tools",
+        "func": agent_tool_library,
+        "description": "Tools for Agent Management",
+        "badge": "Tools",
+        "color": "var(--highlight-color)"
+    },
+    "Forms": {
+        "icon": "file-earmark",
+        "func": forms,
+        "description": "Forms and Submissions",
+        "badge": "Forms",
+        "color": "var(--primary-color)"
     }
 }
-
 st.markdown("""
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 """, unsafe_allow_html=True)
