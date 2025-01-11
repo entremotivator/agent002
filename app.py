@@ -211,12 +211,12 @@ def navigate():
 
         st.markdown('---')
 
-        # Generate menu items
+        # Generate menu items with button logic
         for page, info in PAGES.items():
             selected = st.session_state.current_page == page
             
-            # Invisible button to select page
-            if st.button(f"{page}", key=f"nav_{page}", use_container_width=True, type="secondary" if selected else "primary"):
+            # Button to select page
+            if st.button(f"{page}", key=f"nav_{page}", use_container_width=True, type="primary" if not selected else "secondary"):
                 st.session_state.current_page = page
                 st.experimental_rerun()
 
@@ -233,10 +233,8 @@ def navigate():
                     <div class="menu-badge">{info['badge']}</div>
                 </div>
             """, unsafe_allow_html=True)
-
+            
         # End of the sidebar
-        st.markdown('</div>', unsafe_allow_html=True)
-        
         return st.session_state.current_page
 
 # Execute the selected page
@@ -255,10 +253,7 @@ except Exception as e:
 st.markdown("""
 <div class="footer">
     <div class="footer-content">
-        <p>© 2024 Powered by <a href="https://github.com/TsLu1s" target="_blank">TsLu1s </a>. 
-        Advanced Language Models & Intelligent Conversations | Project Source: 
-        <a href="https://github.com/TsLu1s/talknexus" target="_blank"> TalkNexus</p>
+        <p>© 2024 Powered by <a href="https://github.com/TsLu1s" target="_blank">TalkNexus Team</a></p>
     </div>
 </div>
 """, unsafe_allow_html=True)
-
