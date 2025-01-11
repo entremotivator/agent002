@@ -214,4 +214,3 @@ st.dataframe(
 )
 
 # Optional: Call the dashboard to display another page
-dashboard()
