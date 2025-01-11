@@ -1,0 +1,13 @@
+streamlit
+requests
+openai
+numpy
+Pillow
+langchain
+langchain-ollama
+langchain-community
+sentence-transformers==3.3.1
+faiss-cpu==1.9.0
+nltk==3.9.1
+pypdf==5.1.0
+torch
