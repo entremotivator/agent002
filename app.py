@@ -55,6 +55,111 @@ PAGES = {
         "description": "PDF AI Chat Assistant",
         "badge": "Application",
         "color": "var(--highlight-color)"
+    },
+    "Dashboard": {
+        "icon": "bar-chart",
+        "func": st_pages.dashboard,
+        "description": "Overview of all systems",
+        "badge": "Analytics",
+        "color": "var(--primary-color)"
+    },
+    "Content Agents": {
+        "icon": "file-earmark-text",
+        "func": st_pages.content_agents,
+        "description": "Manage Content Agents",
+        "badge": "Management",
+        "color": "var(--secondary-color)"
+    },
+    "Agent Headquarters": {
+        "icon": "building",
+        "func": st_pages.agent_headquarters,
+        "description": "Centralized Agent Management",
+        "badge": "Operations",
+        "color": "var(--primary-color)"
+    },
+    "LLM Agents": {
+        "icon": "robot",
+        "func": st_pages.llm_agents,
+        "description": "Language Model Agents",
+        "badge": "Agents",
+        "color": "var(--highlight-color)"
+    },
+    "Voice Agent": {
+        "icon": "mic",
+        "func": st_pages.voice_agent,
+        "description": "Voice-Activated Agents",
+        "badge": "AI",
+        "color": "var(--secondary-color)"
+    },
+    "Agent Command": {
+        "icon": "command",
+        "func": st_pages.agent_command,
+        "description": "Command & Control Interface",
+        "badge": "Control",
+        "color": "var(--primary-color)"
+    },
+    "Format Agents": {
+        "icon": "pencil",
+        "func": st_pages.format_agents,
+        "description": "Text Formatting Agents",
+        "badge": "Text",
+        "color": "var(--secondary-color)"
+    },
+    "Visual Agent Flow": {
+        "icon": "flow-chart",
+        "func": st_pages.visual_agent_flow,
+        "description": "Visualize Agent Flows",
+        "badge": "Visualization",
+        "color": "var(--highlight-color)"
+    },
+    "Agent Projects": {
+        "icon": "folder",
+        "func": st_pages.agent_projects,
+        "description": "Manage Agent Projects",
+        "badge": "Projects",
+        "color": "var(--primary-color)"
+    },
+    "AI Agent Roster": {
+        "icon": "list-ul",
+        "func": st_pages.ai_agent_roster,
+        "description": "Roster of Active Agents",
+        "badge": "Roster",
+        "color": "var(--secondary-color)"
+    },
+    "Agent Generator": {
+        "icon": "plus-circle",
+        "func": st_pages.agent_generator,
+        "description": "Generate New Agents",
+        "badge": "Creation",
+        "color": "var(--highlight-color)"
+    },
+    "Active Agents": {
+        "icon": "users",
+        "func": st_pages.active_agents,
+        "description": "Monitor Active Agents",
+        "badge": "Status",
+        "color": "var(--primary-color)"
+    },
+    "LLM Library": {
+        "icon": "book",
+        "func": st_pages.llm_library,
+        "description": "Access Language Models",
+        "badge": "Library",
+        "color": "var(--secondary-color)"
+    },
+    "Agent Tool Library": {
+        "icon": "tools",
+        "func": st_pages.agent_tool_library,
+        "description": "Tools for Agent Management",
+        "badge": "Tools",
+        "color": "var(--highlight-color)"
+    },
+    "Forms": {
+        "icon": "file-earmark",
+        "func": st_pages.forms,
+        "description": "Forms and Submissions",
+        "badge": "Forms",
+        "color": "var(--primary-color)"
     }
 }
 
