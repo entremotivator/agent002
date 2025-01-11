@@ -37,28 +37,28 @@ PAGES = {
     },
     "Language Models Management": {
         "icon": "gear",
-        "func": model_management,
+        "func": st_pages.model_management,
         "description": "Download Models",
         "badge": "Configurations",
         "color": "var(--secondary-color)"
     },
     "AI Conversation": {
         "icon": "chat-dots",
-        "func": ai_chatbot,
+        "func": st_pages.ai_chatbot,
         "description": "Interactive AI Chat",
         "badge": "Application",
         "color": "var(--highlight-color)"
     },
     "RAG Conversation": {
         "icon": "chat-dots",
-        "func": rag_chat,
+        "func": st_pages.rag_chat,
         "description": "PDF AI Chat Assistant",
         "badge": "Application",
         "color": "var(--highlight-color)"
     },
     "Dashboard": {
         "icon": "bar-chart",
-        "func": dashboard,
+        "func": st_pages.dashboard,
         "description": "Overview of all systems",
         "badge": "Analytics",
         "color": "var(--primary-color)"
