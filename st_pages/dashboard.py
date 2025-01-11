@@ -11,6 +11,14 @@ from sklearn.preprocessing import MinMaxScaler
 import st_pages  # Required module for page routing
 from st_pages.dashboard import run as dashboard
 
+# Avoid importing at the top level
+# from st_pages.dashboard import run as dashboard
+
+def dashboard_function():
+    # Import here to avoid circular import issues
+    from st_pages.dashboard import run as dashboard
+    dashboard()
+
 #######################
 # Page Configuration
 st.set_page_config(
