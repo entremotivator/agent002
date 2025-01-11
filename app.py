@@ -1,47 +1,22 @@
 import streamlit as st
-import st_pages  # Required module for page routing
+import st_pages # required modules
 
-# Import run functions for each page
-from st_pages.home import run as home
-from st_pages.model_management import run as model_management
-from st_pages.ai_chatbot import run as ai_chatbot
-from st_pages.rag_chat import run as rag_chat
-from st_pages.dashboard import run as dashboard
-from st_pages.content_agents import run as content_agents
-from st_pages.agent_headquarters import run as agent_headquarters
-from st_pages.llm_agents import run as llm_agents
-from st_pages.voice_agent import run as voice_agent
-from st_pages.agent_command import run as agent_command
-from st_pages.format_agents import run as format_agents
-from st_pages.visual_agent_flow import run as visual_agent_flow
-from st_pages.agent_projects import run as agent_projects
-from st_pages.ai_agent_roster import run as ai_agent_roster
-from st_pages.agent_generator import run as agent_generator
-from st_pages.active_agents import run as active_agents
-from st_pages.llm_library import run as llm_library
-from st_pages.agent_tool_library import run as agent_tool_library
-from st_pages.forms import run as forms
-
-# Set page configuration
+# Set page config
 st.set_page_config(page_title="TalkNexus - Ollama Chatbot Multi-Model Interface", layout="wide", page_icon="🤖")
 
-# Function to load custom CSS from file
+# Load custom CSS from file
 def load_css(file_name):
-    try:
-        with open(file_name) as f:
-            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-    except Exception as e:
-        st.warning(f"Error loading CSS file: {e}")
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-# Load custom CSS
 load_css('styles.css')
 
-# Initialize session state for tracking the current page
+# Initialize session state
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "Home"
 
-# Header Section with styling
-st.markdown("""
+# Header
+st.markdown(f"""
 <div class="header">
     <div class="animated-bg"></div>
     <div class="header-content">
@@ -51,149 +26,42 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Define pages with relevant icons, functions, descriptions, and other info
+# Enhanced pages definition
 PAGES = {
     "Home": {
         "icon": "house-door",
-        "func": home,
+        "func": st_pages.home,
         "description": "Guidelines & Overview",
         "badge": "Informative",
         "color": "var(--primary-color)"
     },
     "Language Models Management": {
         "icon": "gear",
-        "func": model_management,
+        "func": st_pages.model_management,
         "description": "Download Models",
         "badge": "Configurations",
         "color": "var(--secondary-color)"
     },
     "AI Conversation": {
         "icon": "chat-dots",
-        "func": ai_chatbot,
+        "func": st_pages.ai_chatbot,
         "description": "Interactive AI Chat",
         "badge": "Application",
         "color": "var(--highlight-color)"
     },
     "RAG Conversation": {
         "icon": "chat-dots",
-        "func": rag_chat,
+        "func": st_pages.rag_chat,
         "description": "PDF AI Chat Assistant",
         "badge": "Application",
         "color": "var(--highlight-color)"
-    },
-    "Dashboard": {
-        "icon": "bar-chart",
-        "func": dashboard,
-        "description": "Overview of all systems",
-        "badge": "Analytics",
-        "color": "var(--primary-color)"
-    },
-    "Content Agents": {
-        "icon": "file-earmark-text",
-        "func": content_agents,
-        "description": "Manage Content Agents",
-        "badge": "Management",
-        "color": "var(--secondary-color)"
-    },
-    "Agent Headquarters": {
-        "icon": "building",
-        "func": agent_headquarters,
-        "description": "Centralized Agent Management",
-        "badge": "Operations",
-        "color": "var(--primary-color)"
-    },
-    "LLM Agents": {
-        "icon": "robot",
-        "func": llm_agents,
-        "description": "Language Model Agents",
-        "badge": "Agents",
-        "color": "var(--highlight-color)"
-    },
-    "Voice Agent": {
-        "icon": "mic",
-        "func": voice_agent,
-        "description": "Voice-Activated Agents",
-        "badge": "AI",
-        "color": "var(--secondary-color)"
-    },
-    "Agent Command": {
-        "icon": "command",
-        "func": agent_command,
-        "description": "Command & Control Interface",
-        "badge": "Control",
-        "color": "var(--primary-color)"
-    },
-    "Format Agents": {
-        "icon": "pencil",
-        "func": format_agents,
-        "description": "Text Formatting Agents",
-        "badge": "Text",
-        "color": "var(--secondary-color)"
-    },
-    "Visual Agent Flow": {
-        "icon": "flow-chart",
-        "func": visual_agent_flow,
-        "description": "Visualize Agent Flows",
-        "badge": "Visualization",
-        "color": "var(--highlight-color)"
-    },
-    "Agent Projects": {
-        "icon": "folder",
-        "func": agent_projects,
-        "description": "Manage Agent Projects",
-        "badge": "Projects",
-        "color": "var(--primary-color)"
-    },
-    "AI Agent Roster": {
-        "icon": "list-ul",
-        "func": ai_agent_roster,
-        "description": "Roster of Active Agents",
-        "badge": "Roster",
-        "color": "var(--secondary-color)"
-    },
-    "Agent Generator": {
-        "icon": "plus-circle",
-        "func": agent_generator,
-        "description": "Generate New Agents",
-        "badge": "Creation",
-        "color": "var(--highlight-color)"
-    },
-    "Active Agents": {
-        "icon": "users",
-        "func": active_agents,
-        "description": "Monitor Active Agents",
-        "badge": "Status",
-        "color": "var(--primary-color)"
-    },
-    "LLM Library": {
-        "icon": "book",
-        "func": llm_library,
-        "description": "Access Language Models",
-        "badge": "Library",
-        "color": "var(--secondary-color)"
-    },
-    "Agent Tool Library": {
-        "icon": "tools",
-        "func": agent_tool_library,
-        "description": "Tools for Agent Management",
-        "badge": "Tools",
-        "color": "var(--highlight-color)"
-    },
-    "Forms": {
-        "icon": "file-earmark",
-        "func": forms,
-        "description": "Forms and Submissions",
-        "badge": "Forms",
-        "color": "var(--primary-color)"
     }
 }
 
-# Add Bootstrap icons CDN
 st.markdown("""
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 """, unsafe_allow_html=True)
 
-# Function to handle page navigation
 def navigate():
     with st.sidebar:
         st.markdown('''
@@ -211,16 +79,21 @@ def navigate():
 
         st.markdown('---')
 
-        # Generate menu items with button logic
+        # Create menu items
         for page, info in PAGES.items():
             selected = st.session_state.current_page == page
             
-            # Button to select page
-            if st.button(f"{page}", key=f"nav_{page}", use_container_width=True, type="primary" if not selected else "secondary"):
+            # Create the button (invisible but clickable)
+            if st.button(
+                f"{page}",
+                key=f"nav_{page}",
+                use_container_width=True,
+                type="secondary" if selected else "primary"
+            ):
                 st.session_state.current_page = page
-                st.experimental_rerun()
+                st.rerun()
 
-            # Visual representation of the menu item
+            # Visual menu item
             st.markdown(f"""
                 <div class="menu-item {'selected' if selected else ''}">
                     <div class="menu-icon">
@@ -233,27 +106,34 @@ def navigate():
                     <div class="menu-badge">{info['badge']}</div>
                 </div>
             """, unsafe_allow_html=True)
-            
-        # End of the sidebar
+
+        # Close navigation container
+        st.markdown('</div>', unsafe_allow_html=True)
+        
         return st.session_state.current_page
 
-# Execute the selected page
+# Get selected page and run its function
 try:
     selected_page = navigate()
+    # Update session state
+    if selected_page != st.session_state.current_page:
+        st.session_state.current_page = selected_page
+        st.rerun()
     
-    # Run the page's corresponding function
+    # Run the selected function
     page_function = PAGES[selected_page]["func"]
     page_function()
-
 except Exception as e:
-    st.error(f"Error loading page: {e}")
-    home()
+    st.error(f"Error loading page: {str(e)}")
+    st_pages.home.run()
 
-# Footer section
+# Display the footer
 st.markdown("""
 <div class="footer">
     <div class="footer-content">
-        <p>© 2024 Powered by <a href="https://github.com/TsLu1s" target="_blank">TalkNexus Team</a></p>
+        <p>© 2024 Powered by <a href="https://github.com/TsLu1s" target="_blank">TsLu1s </a>. 
+        Advanced Language Models & Intelligent Conversations
+        | Project Source: <a href="https://github.com/TsLu1s/talknexus" target="_blank"> TalkNexus</p>
     </div>
 </div>
 """, unsafe_allow_html=True)
