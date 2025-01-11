@@ -8,7 +8,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import MinMaxScaler
 
 # Import st_pages for page routing (Ensure st_pages is installed and set up correctly)
-import st_pages  # Required module for page routing
+ # Required module for page routing
 from st_pages.dashboard import run as dashboard
 
 # Avoid importing at the top level
