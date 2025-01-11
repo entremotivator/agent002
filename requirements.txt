@@ -12,3 +12,4 @@ nltk==3.9.1
 pypdf==5.1.0
 torch
 plotly.express
+st_pages
