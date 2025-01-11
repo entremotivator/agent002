@@ -1,6 +1,27 @@
 import streamlit as st
 import st_pages  # Required module for page routing
 
+# Import run functions for each page
+from st_pages.home import run as home
+from st_pages.model_management import run as model_management
+from st_pages.ai_chatbot import run as ai_chatbot
+from st_pages.rag_chat import run as rag_chat
+from st_pages.dashboard import run as dashboard
+from st_pages.content_agents import run as content_agents
+from st_pages.agent_headquarters import run as agent_headquarters
+from st_pages.llm_agents import run as llm_agents
+from st_pages.voice_agent import run as voice_agent
+from st_pages.agent_command import run as agent_command
+from st_pages.format_agents import run as format_agents
+from st_pages.visual_agent_flow import run as visual_agent_flow
+from st_pages.agent_projects import run as agent_projects
+from st_pages.ai_agent_roster import run as ai_agent_roster
+from st_pages.agent_generator import run as agent_generator
+from st_pages.active_agents import run as active_agents
+from st_pages.llm_library import run as llm_library
+from st_pages.agent_tool_library import run as agent_tool_library
+from st_pages.forms import run as forms
+
 # Set page configuration
 st.set_page_config(page_title="TalkNexus - Ollama Chatbot Multi-Model Interface", layout="wide", page_icon="🤖")
 
@@ -34,133 +55,133 @@ st.markdown("""
 PAGES = {
     "Home": {
         "icon": "house-door",
-        "func": st_pages.home,
+        "func": home,
         "description": "Guidelines & Overview",
         "badge": "Informative",
         "color": "var(--primary-color)"
     },
     "Language Models Management": {
         "icon": "gear",
-        "func": st_pages.model_management,
+        "func": model_management,
         "description": "Download Models",
         "badge": "Configurations",
         "color": "var(--secondary-color)"
     },
     "AI Conversation": {
         "icon": "chat-dots",
-        "func": st_pages.ai_chatbot,
+        "func": ai_chatbot,
         "description": "Interactive AI Chat",
         "badge": "Application",
         "color": "var(--highlight-color)"
     },
     "RAG Conversation": {
         "icon": "chat-dots",
-        "func": st_pages.rag_chat,
+        "func": rag_chat,
         "description": "PDF AI Chat Assistant",
         "badge": "Application",
         "color": "var(--highlight-color)"
     },
     "Dashboard": {
         "icon": "bar-chart",
-        "func": st_pages.dashboard,
+        "func": dashboard,
         "description": "Overview of all systems",
         "badge": "Analytics",
         "color": "var(--primary-color)"
     },
     "Content Agents": {
         "icon": "file-earmark-text",
-        "func": st_pages.content_agents,
+        "func": content_agents,
         "description": "Manage Content Agents",
         "badge": "Management",
         "color": "var(--secondary-color)"
     },
     "Agent Headquarters": {
         "icon": "building",
-        "func": st_pages.agent_headquarters,
+        "func": agent_headquarters,
         "description": "Centralized Agent Management",
         "badge": "Operations",
         "color": "var(--primary-color)"
     },
     "LLM Agents": {
         "icon": "robot",
-        "func": st_pages.llm_agents,
+        "func": llm_agents,
         "description": "Language Model Agents",
         "badge": "Agents",
         "color": "var(--highlight-color)"
     },
     "Voice Agent": {
         "icon": "mic",
-        "func": st_pages.voice_agent,
+        "func": voice_agent,
         "description": "Voice-Activated Agents",
         "badge": "AI",
         "color": "var(--secondary-color)"
     },
     "Agent Command": {
         "icon": "command",
-        "func": st_pages.agent_command,
+        "func": agent_command,
         "description": "Command & Control Interface",
         "badge": "Control",
         "color": "var(--primary-color)"
     },
     "Format Agents": {
         "icon": "pencil",
-        "func": st_pages.format_agents,
+        "func": format_agents,
         "description": "Text Formatting Agents",
         "badge": "Text",
         "color": "var(--secondary-color)"
     },
     "Visual Agent Flow": {
         "icon": "flow-chart",
-        "func": st_pages.visual_agent_flow,
+        "func": visual_agent_flow,
         "description": "Visualize Agent Flows",
         "badge": "Visualization",
         "color": "var(--highlight-color)"
     },
     "Agent Projects": {
         "icon": "folder",
-        "func": st_pages.agent_projects,
+        "func": agent_projects,
         "description": "Manage Agent Projects",
         "badge": "Projects",
         "color": "var(--primary-color)"
     },
     "AI Agent Roster": {
         "icon": "list-ul",
-        "func": st_pages.ai_agent_roster,
+        "func": ai_agent_roster,
         "description": "Roster of Active Agents",
         "badge": "Roster",
         "color": "var(--secondary-color)"
     },
     "Agent Generator": {
         "icon": "plus-circle",
-        "func": st_pages.agent_generator,
+        "func": agent_generator,
         "description": "Generate New Agents",
         "badge": "Creation",
         "color": "var(--highlight-color)"
     },
     "Active Agents": {
         "icon": "users",
-        "func": st_pages.active_agents,
+        "func": active_agents,
         "description": "Monitor Active Agents",
         "badge": "Status",
         "color": "var(--primary-color)"
     },
     "LLM Library": {
         "icon": "book",
-        "func": st_pages.llm_library,
+        "func": llm_library,
         "description": "Access Language Models",
         "badge": "Library",
         "color": "var(--secondary-color)"
     },
     "Agent Tool Library": {
         "icon": "tools",
-        "func": st_pages.agent_tool_library,
+        "func": agent_tool_library,
         "description": "Tools for Agent Management",
         "badge": "Tools",
         "color": "var(--highlight-color)"
     },
     "Forms": {
         "icon": "file-earmark",
-        "func": st_pages.forms,
+        "func": forms,
         "description": "Forms and Submissions",
         "badge": "Forms",
         "color": "var(--primary-color)"
@@ -228,7 +249,7 @@ try:
 
 except Exception as e:
     st.error(f"Error loading page: {e}")
-    st_pages.home.run()
+    home()
 
 # Footer section
 st.markdown("""
