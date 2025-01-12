@@ -57,11 +57,217 @@ st.markdown("""
 
 # Define Pages and Their Metadata for Navigation
 PAGES = {
-    "Home": {"icon": "house-door", "func": home, "description": "Guidelines & Overview", "badge": "Informative", "color": "var(--primary-color)"},
-    "Language Models Management": {"icon": "gear", "func": model_management, "description": "Download Models", "badge": "Configurations", "color": "var(--secondary-color)"},
-    "AI Conversation": {"icon": "chat-dots", "func": ai_chatbot, "description": "Interactive AI Chat", "badge": "Application", "color": "var(--highlight-color)"},
-    # Add other pages similarly...
+    "Home": {
+        "icon": "house-door",
+        "func": st_pages.home,
+        "description": "Guidelines & Overview",
+        "badge": "Informative",
+        "color": "var(--primary-color)",
+        "tooltip": "Get started with an overview of the platform's features and guidelines for navigating the system.",
+        "order": 1,  # Can define a sorting order for the pages
+        "permissions": ["admin", "user"],  # Permissions required to access this page
+        "visibility": True  # If False, the page won't be shown in the navigation
+    },
+    "Language Models Management": {
+        "icon": "gear",
+        "func": st_pages.model_management,
+        "description": "Download and configure language models for various tasks.",
+        "badge": "Configurations",
+        "color": "var(--secondary-color)",
+        "tooltip": "Manage and configure the models that power the AI agents in the system.",
+        "order": 2,
+        "permissions": ["admin"],
+        "visibility": True
+    },
+    "AI Conversation": {
+        "icon": "chat-dots",
+        "func": st_pages.ai_chatbot,
+        "description": "Interact with the AI chatbot for engaging conversations.",
+        "badge": "Application",
+        "color": "var(--highlight-color)",
+        "tooltip": "Engage in natural language conversations powered by AI models.",
+        "order": 3,
+        "permissions": ["admin", "user"],
+        "visibility": True
+    },
+    "RAG Conversation": {
+        "icon": "chat-dots",
+        "func": st_pages.rag_chat,
+        "description": "PDF AI Chat Assistant for interactive document-based conversations.",
+        "badge": "Application",
+        "color": "var(--highlight-color)",
+        "tooltip": "Have AI-assisted conversations based on the content of PDFs.",
+        "order": 4,
+        "permissions": ["admin", "user"],
+        "visibility": True
+    },
+    "Dashboard": {
+        "icon": "bar-chart",
+        "func": st_pages.dashboard,
+        "description": "Overview of all systems, tracking and analyzing performance.",
+        "badge": "Analytics",
+        "color": "var(--primary-color)",
+        "tooltip": "Visualize and analyze the performance of all your AI models and agents in one place.",
+        "order": 5,
+        "permissions": ["admin"],
+        "visibility": True
+    },
+    "Content Agents": {
+        "icon": "file-earmark-text",
+        "func": st_pages.content_agents,
+        "description": "Manage content creation agents for automated writing and content generation.",
+        "badge": "Management",
+        "color": "var(--secondary-color)",
+        "tooltip": "Create, manage, and optimize content agents designed for automated content generation.",
+        "order": 6,
+        "permissions": ["admin", "editor"],
+        "visibility": True
+    },
+    "Agent Headquarters": {
+        "icon": "building",
+        "func": st_pages.agent_headquarters,
+        "description": "Centralized management hub for overseeing all agents in the system.",
+        "badge": "Operations",
+        "color": "var(--primary-color)",
+        "tooltip": "Monitor and manage all your agents from a single location.",
+        "order": 7,
+        "permissions": ["admin"],
+        "visibility": True
+    },
+    "LLM Agents": {
+        "icon": "robot",
+        "func": st_pages.llm_agents,
+        "description": "Manage and deploy language model agents to handle specific tasks.",
+        "badge": "Agents",
+        "color": "var(--highlight-color)",
+        "tooltip": "View, create, and deploy language model agents tailored to your needs.",
+        "order": 8,
+        "permissions": ["admin", "user"],
+        "visibility": True
+    },
+    "Voice Agent": {
+        "icon": "mic",
+        "func": st_pages.voice_agent,
+        "description": "Manage voice-activated AI agents for speech-driven applications.",
+        "badge": "AI",
+        "color": "var(--secondary-color)",
+        "tooltip": "Interact with and manage voice-activated AI agents for speech-based interfaces.",
+        "order": 9,
+        "permissions": ["admin", "user"],
+        "visibility": True
+    },
+    "Agent Command": {
+        "icon": "command",
+        "func": st_pages.agent_command,
+        "description": "Command and control interface for managing agent actions.",
+        "badge": "Control",
+        "color": "var(--primary-color)",
+        "tooltip": "Directly control the actions and operations of your agents from this interface.",
+        "order": 10,
+        "permissions": ["admin"],
+        "visibility": True
+    },
+    "Format Agents": {
+        "icon": "pencil",
+        "func": st_pages.format_agents,
+        "description": "Text formatting agents to help with transforming content into various styles.",
+        "badge": "Text",
+        "color": "var(--secondary-color)",
+        "tooltip": "Apply different formatting styles to your content through automated text formatting agents.",
+        "order": 11,
+        "permissions": ["admin", "editor"],
+        "visibility": True
+    },
+    "Visual Agent Flow": {
+        "icon": "flow-chart",
+        "func": st_pages.visual_agent_flow,
+        "description": "Visualize agent workflows to understand how agents interact and perform tasks.",
+        "badge": "Visualization",
+        "color": "var(--highlight-color)",
+        "tooltip": "Graphically represent and optimize your agents' workflows and interactions.",
+        "order": 12,
+        "permissions": ["admin", "user"],
+        "visibility": True
+    },
+    "Agent Projects": {
+        "icon": "folder",
+        "func": st_pages.agent_projects,
+        "description": "Manage and track projects involving AI agents.",
+        "badge": "Projects",
+        "color": "var(--primary-color)",
+        "tooltip": "Organize and track the progress of various AI agent projects from start to finish.",
+        "order": 13,
+        "permissions": ["admin", "project_manager"],
+        "visibility": True
+    },
+    "AI Agent Roster": {
+        "icon": "list-ul",
+        "func": st_pages.ai_agent_roster,
+        "description": "View and manage a roster of active AI agents.",
+        "badge": "Roster",
+        "color": "var(--secondary-color)",
+        "tooltip": "Get a complete list of active agents and their statuses.",
+        "order": 14,
+        "permissions": ["admin"],
+        "visibility": True
+    },
+    "Agent Generator": {
+        "icon": "plus-circle",
+        "func": st_pages.agent_generator,
+        "description": "Generate new AI agents for various tasks and roles.",
+        "badge": "Creation",
+        "color": "var(--highlight-color)",
+        "tooltip": "Create new agents quickly using templates or custom configurations.",
+        "order": 15,
+        "permissions": ["admin"],
+        "visibility": True
+    },
+    "Active Agents": {
+        "icon": "users",
+        "func": st_pages.active_agents,
+        "description": "Monitor the real-time status and performance of active agents.",
+        "badge": "Status",
+        "color": "var(--primary-color)",
+        "tooltip": "Track and manage the performance of all currently active agents in the system.",
+        "order": 16,
+        "permissions": ["admin", "user"],
+        "visibility": True
+    },
+    "LLM Library": {
+        "icon": "book",
+        "func": st_pages.llm_library,
+        "description": "Access and browse a library of pre-configured language models.",
+        "badge": "Library",
+        "color": "var(--secondary-color)",
+        "tooltip": "Explore and use a collection of powerful language models to enhance your agents.",
+        "order": 17,
+        "permissions": ["admin", "user"],
+        "visibility": True
+    },
+    "Agent Tool Library": {
+        "icon": "tools",
+        "func": st_pages.agent_tool_library,
+        "description": "Tools and utilities to support the management and operation of agents.",
+        "badge": "Tools",
+        "color": "var(--highlight-color)",
+        "tooltip": "Access a variety of tools to help manage, optimize, and troubleshoot your agents.",
+        "order": 18,
+        "permissions": ["admin", "user"],
+        "visibility": True
+    },
+    "Forms": {
+        "icon": "file-earmark",
+        "func": st_pages.forms,
+        "description": "Forms and submissions management for collecting and processing data.",
+        "badge": "Forms",
+        "color": "var(--primary-color)",
+        "tooltip": "Manage and process form submissions for data collection and workflows.",
+        "order": 19,
+        "permissions": ["admin", "user"],
+        "visibility": True
+    }
 }
+
 
 # Add Bootstrap Icons for Better Visuals in Navigation Sidebar
 st.markdown("""
