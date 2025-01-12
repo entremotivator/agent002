@@ -160,7 +160,7 @@ PAGES = {
         "description": "Forms and Submissions",
         "badge": "Forms",
         "color": "var(--primary-color)"
-    }
+    },
 }
 st.markdown("""
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
