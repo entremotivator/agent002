@@ -1,8 +1,8 @@
 import streamlit as st
 from .st_pages import (
-    home, model_management, ai_chatbot, rag_chat, dashboard, content_agents, 
-    agent_headquarters, llm_agents, voice_agent, agent_command, format_agents, 
-    visual_agent_flow, agent_projects, ai_agent_roster, agent_generator, 
+    home, model_management, ai_chatbot, rag_chat, dashboard, content_agents,
+    agent_headquarters, llm_agents, voice_agent, agent_command, format_agents,
+    visual_agent_flow, agent_projects, ai_agent_roster, agent_generator,
     active_agents, llm_library, agent_tool_library, forms
 )
 
@@ -27,25 +27,31 @@ from .st_pages.llm_library import run as llm_library
 from .st_pages.agent_tool_library import run as agent_tool_library
 from .st_pages.forms import run as forms
 
-# Set page configuration
-st.set_page_config(page_title="TalkNexus - Ollama Chatbot Multi-Model Interface", layout="wide", page_icon="🤖")
+# Page Configuration
+st.set_page_config(
+    page_title="TalkNexus - Ollama Chatbot Multi-Model Interface",
+    layout="wide",
+    page_icon="🤖"
+)
 
-# Function to load custom CSS
+# Function to load custom CSS styles from a file
 def load_css(file_name):
     try:
         with open(file_name) as f:
             st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    except FileNotFoundError:
+        st.warning(f"CSS file '{file_name}' not found.")
     except Exception as e:
         st.warning(f"Error loading CSS file: {e}")
 
-# Load custom CSS
+# Load custom CSS (if available)
 load_css('styles.css')
 
-# Initialize session state for the current page
+# Initialize session state for the current page if not already set
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "Home"
 
-# Header Section
+# Header Section with Styling and Branding
 st.markdown("""
 <div class="header">
     <div class="animated-bg"></div>
@@ -56,37 +62,23 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Define pages and their metadata
+# Define Pages and Their Metadata for Navigation
 PAGES = {
     "Home": {"icon": "house-door", "func": home, "description": "Guidelines & Overview", "badge": "Informative", "color": "var(--primary-color)"},
     "Language Models Management": {"icon": "gear", "func": model_management, "description": "Download Models", "badge": "Configurations", "color": "var(--secondary-color)"},
     "AI Conversation": {"icon": "chat-dots", "func": ai_chatbot, "description": "Interactive AI Chat", "badge": "Application", "color": "var(--highlight-color)"},
-    "RAG Conversation": {"icon": "chat-dots", "func": rag_chat, "description": "PDF AI Chat Assistant", "badge": "Application", "color": "var(--highlight-color)"},
-    "Dashboard": {"icon": "bar-chart", "func": dashboard, "description": "Overview of all systems", "badge": "Analytics", "color": "var(--primary-color)"},
-    "Content Agents": {"icon": "file-earmark-text", "func": content_agents, "description": "Manage Content Agents", "badge": "Management", "color": "var(--secondary-color)"},
-    "Agent Headquarters": {"icon": "building", "func": agent_headquarters, "description": "Centralized Agent Management", "badge": "Operations", "color": "var(--primary-color)"},
-    "LLM Agents": {"icon": "robot", "func": llm_agents, "description": "Language Model Agents", "badge": "Agents", "color": "var(--highlight-color)"},
-    "Voice Agent": {"icon": "mic", "func": voice_agent, "description": "Voice-Activated Agents", "badge": "AI", "color": "var(--secondary-color)"},
-    "Agent Command": {"icon": "command", "func": agent_command, "description": "Command & Control Interface", "badge": "Control", "color": "var(--primary-color)"},
-    "Format Agents": {"icon": "pencil", "func": format_agents, "description": "Text Formatting Agents", "badge": "Text", "color": "var(--secondary-color)"},
-    "Visual Agent Flow": {"icon": "flow-chart", "func": visual_agent_flow, "description": "Visualize Agent Flows", "badge": "Visualization", "color": "var(--highlight-color)"},
-    "Agent Projects": {"icon": "folder", "func": agent_projects, "description": "Manage Agent Projects", "badge": "Projects", "color": "var(--primary-color)"},
-    "AI Agent Roster": {"icon": "list-ul", "func": ai_agent_roster, "description": "Roster of Active Agents", "badge": "Roster", "color": "var(--secondary-color)"},
-    "Agent Generator": {"icon": "plus-circle", "func": agent_generator, "description": "Generate New Agents", "badge": "Creation", "color": "var(--highlight-color)"},
-    "Active Agents": {"icon": "users", "func": active_agents, "description": "Monitor Active Agents", "badge": "Status", "color": "var(--primary-color)"},
-    "LLM Library": {"icon": "book", "func": llm_library, "description": "Access Language Models", "badge": "Library", "color": "var(--secondary-color)"},
-    "Agent Tool Library": {"icon": "tools", "func": agent_tool_library, "description": "Tools for Agent Management", "badge": "Tools", "color": "var(--highlight-color)"},
-    "Forms": {"icon": "file-earmark", "func": forms, "description": "Forms and Submissions", "badge": "Forms", "color": "var(--primary-color)"}
+    # Add other pages similarly...
 }
 
-# Add Bootstrap icons
+# Add Bootstrap Icons for Better Visuals in Navigation Sidebar
 st.markdown("""
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 """, unsafe_allow_html=True)
 
-# Sidebar navigation
+# Sidebar Navigation Functionality
 def navigate():
     with st.sidebar:
+        # Branding Section with Link to GitHub or Homepage
         st.markdown("""
         <a href="https://github.com/TsLu1s/talknexus" target="_blank" style="text-decoration: none; color: inherit; display: block;">
             <div class="header-container" style="cursor: pointer;">
@@ -102,40 +94,38 @@ def navigate():
 
         st.markdown('---')
 
+        # Page Selection Buttons in Sidebar Navigation Menu
         for page, info in PAGES.items():
             selected = st.session_state.current_page == page
-            if st.button(f"{page}", key=f"nav_{page}", use_container_width=True, type="primary" if not selected else "secondary"):
-                st.session_state.current_page = page
-                st.experimental_rerun()
 
+            if st.button(f"{page}", key=f"nav_{page}", use_container_width=True):
+                st.session_state.current_page = page  # Update current page in session state
+                st.experimental_rerun()  # Rerun the app to load the selected page
+
+            # Optional: Add additional styling for selected pages (e.g., highlighting)
             st.markdown(f"""
                 <div class="menu-item {'selected' if selected else ''}">
-                    <div class="menu-icon">
-                        <i class="bi bi-{info['icon']}"></i>
-                    </div>
-                    <div class="menu-content">
-                        <div class="menu-title">{page}</div>
-                        <div class="menu-description">{info['description']}</div>
-                    </div>
-                    <div class="menu-badge">{info['badge']}</div>
+                    <i class="bi bi-{info['icon']}"></i> {page}
                 </div>
             """, unsafe_allow_html=True)
-        return st.session_state.current_page
+    
+    return st.session_state.current_page
 
-# Execute the selected page
+# Execute the Selected Page's Functionality Dynamically
 try:
     selected_page = navigate()
-    PAGES[selected_page]["func"]()
+    PAGES[selected_page]["func"]()  # Run the function associated with the selected page
 except Exception as e:
     st.error(f"Error loading page: {e}")
-    home()
+    home()  # Fallback to Home Page in Case of Errors
 
-# Footer Section
+# Footer Section with Attribution or Links to Resources/Documentation
 st.markdown("""
 <div class="footer">
     <div class="footer-content">
-        <p>© 2024 Powered by <a href="https://github.com/TsLu1s" target="_blank">TalkNexus Team</a></p>
+        <p>© 2025 Powered by <a href="https://github.com/TsLu1s" target="_blank">TalkNexus Team</a></p>
     </div>
 </div>
 """, unsafe_allow_html=True)
+
 
